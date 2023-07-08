@@ -1,9 +1,18 @@
-import { Button } from '@/components/ui/button';
+'use client';
+
+import { Modal } from '@/components/ui/modal';
 
 const SetupPage = () => {
   return (
     <div className="p-4">
-      <Button>Click Me</Button>
+      <Modal
+        isOpen={true}
+        title="Test"
+        description="Test Description"
+        onClose={() => {}}
+      >
+        Children
+      </Modal>
     </div>
   );
 };
