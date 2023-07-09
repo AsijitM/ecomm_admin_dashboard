@@ -4,6 +4,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 import { useStoreModal } from '@/hooks/use-store-modal';
 import { Modal } from '@/components/ui/modal';
@@ -17,6 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -32,7 +34,18 @@ export const StoreModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    // console.log(values);
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/stores', values);
+
+      toast.success('Store Created!');
+    } catch (error) {
+      toast.error('Something Went Wrong!');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -71,9 +84,7 @@ export const StoreModal = () => {
                 >
                   Cancel
                 </Button>
-                <Button
-                  disabled={loading}
-                  type="submit">
+                <Button disabled={loading} type="submit">
                   Continue
                 </Button>
               </div>
