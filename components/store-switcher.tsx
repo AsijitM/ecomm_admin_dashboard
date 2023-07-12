@@ -53,9 +53,8 @@ export default function StoreSwitcher({
   //this will help us to find the currently seleced id
 
   const currentStore = formattedItems.find(
-    (item) => item.value === params.storeid
+    (item) => item.value === params.storeId
   );
-  console.log(formattedItems);
 
   const [open, setOpen] = useState(false);
 
