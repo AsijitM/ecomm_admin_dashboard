@@ -28,7 +28,9 @@ const ImageUpload: FC<ImageUploadProps> = ({
     onchange(result.info.secure_url);
   };
 
-  if (!isMounted) return null;
+    if (!isMounted) {
+        return null;
+  }
 
   return (
     <div>
