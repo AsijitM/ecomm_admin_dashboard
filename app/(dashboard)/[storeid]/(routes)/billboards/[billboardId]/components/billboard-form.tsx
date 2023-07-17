@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import ImageUpload from '@/components/ui/image-upload';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useOrigin } from '@/hooks/use-origin';
@@ -19,6 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Billboard } from '@prisma/client';
 
 import axios from 'axios';
+import { url } from 'inspector';
 import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
@@ -112,6 +114,24 @@ const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
+          <FormField
+            name="imageUrl"
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Background Image</FormLabel>
+                <FormControl>
+                <ImageUpload
+                  value={field.value ? [field.value] : []}
+                  disabled={loading}
+                  onChange={(url) => field.onChange(url)}
+                  onRemove={() => field.onChange('')}
+                />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="grid grid-cols-3 gap-8">
             <FormField
               name="label"
