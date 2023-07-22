@@ -86,7 +86,7 @@ const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push('/');
+      router.push(`/${params.storeId}/billboards`);
       toast.success('Billboard Deleted');
     } catch (error) {
       toast.error('Make sure you remove catagories using this billboard first');
@@ -154,7 +154,7 @@ const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage />k
                 </FormItem>
               )}
             />
@@ -164,7 +164,6 @@ const BillboardForm: FC<BillboardFormProps> = ({ initialData }) => {
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
