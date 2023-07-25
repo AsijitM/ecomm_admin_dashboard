@@ -18,7 +18,7 @@ export const CategoryClient: FC<CategoryClientProps> = ({ data }) => {
 
   const router = useRouter();
   const params = useParams();
-  
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -35,9 +35,9 @@ export const CategoryClient: FC<CategoryClientProps> = ({ data }) => {
       </div>
       <Separator />
       <DataTable columns={columns} data={data} searchKey="name" />
-      <Heading title="API" description="API calls for categories" />npm run no
+      <Heading title="API" description="API calls for categories" />
       <Separator />
-      <ApiList entityName="category" entityIdName="categoryId" />
+      <ApiList entityName="categories" entityIdName="categoryId" />
     </>
   );
 };

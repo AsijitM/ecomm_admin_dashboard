@@ -70,14 +70,14 @@ const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/billboards/${params.billboardId}`,
+          `/api/${params.storeId}/categories/${params.categoryId}`,
           data
         );
       } else {
-        await axios.post(`/api/${params.storeId}/billboards`, data);
+        await axios.post(`/api/${params.storeId}/categories`, data);
       }
       router.refresh();
-      router.push(`/${params.storeId}/billboards`);
+      router.push(`/${params.storeId}/categories`);
       toast.success(toastMessage);
     } catch (error) {
       toast.error('Something Went wrong.');
@@ -90,13 +90,15 @@ const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${params.billboardId}`
+        `/api/${params.storeId}/categories/${params.categoryId}`
       );
       router.refresh();
-      router.push(`/${params.storeId}/billboards`);
-      toast.success('Billboard Deleted');
+      router.push(`/${params.storeId}/categories`);
+      toast.success('Category Deleted');
     } catch (error) {
-      toast.error('Make sure you remove catagories using this billboard first');
+      toast.error(
+        'Make sure you remove all products using this category first'
+      );
     } finally {
       setLoading(false);
       setOpen(false);
@@ -169,10 +171,7 @@ const CategoryForm: FC<CategoryFormProps> = ({ initialData, billboards }) => {
                     </FormControl>
                     <SelectContent>
                       {billboards.map((billboard) => (
-                        <SelectItem
-                          key={billboard.id}
-                          value={billboard.id}
-                        >
+                        <SelectItem key={billboard.id} value={billboard.id}>
                           {billboard.label}
                         </SelectItem>
                       ))}
